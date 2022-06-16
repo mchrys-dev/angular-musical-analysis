@@ -12,6 +12,7 @@ export class LevelsService {
         en: 'I or i, IV or iv and V',
         fr: 'I ou i, IV ou iv et V'
       },
+      scaleTypeIds: [1, 2],
       inLite: true
     },
     {
@@ -20,6 +21,7 @@ export class LevelsService {
         en: 'vi or bVI',
         fr: 'vi ou bVI'
       },
+      scaleTypeIds: [1, 2],
       inLite: false
     }
   ]; 

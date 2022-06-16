@@ -31,7 +31,6 @@ export class SettingsComponent implements OnInit {
       this.levels = this.levels.filter((level: any) => level.inLite);
     }
     this.selLevel = this.levels.find((level: any) => level.id === this.storageService.getSelLevelId());
-    console.log(this.selLevel);
   }
 
   ngOnInit(): void {
