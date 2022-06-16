@@ -1,0 +1,23 @@
+<h1>{{ texts.settings[lang] }}</h1>
+
+<div class="card text-white bg-primary mb-3">
+    <div class="card-header">{{ texts.selLevel[lang] }}</div>
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+              <label for="levelSelect" class="form-label mt-4">{{ texts.selectLevel[lang] }}</label>
+              <select 
+                class="form-select" 
+                [(ngModel)]="selLevel" 
+                name="level-select" 
+                id="levelSelect" 
+                (change)="saveSelLevel()"
+              >
+                <option *ngFor="let level of levels" [ngValue]="level">{{ level.description[lang] }}</option>
+              </select>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{ selLevel | json }}
