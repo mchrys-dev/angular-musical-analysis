@@ -49,4 +49,8 @@ export class ChordsService {
   ]
 
   constructor() { }
+
+  public getAll(): Object[] {
+    return this.chords;
+  }
 }

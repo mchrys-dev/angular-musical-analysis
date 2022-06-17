@@ -1,1 +1,10 @@
 <h1>{{ texts.training[lang] }}</h1>
+
+<div class="row d-flex justify-content-center">
+    <div 
+        *ngFor="let chord of phrasesAbsoluteChords"
+        class="col-2"
+    >
+        {{ chord }}
+    </div>
+</div>
