@@ -7,6 +7,13 @@ export class ChordsService {
 
   private chords = [
     {
+      id: 0,
+      name: {
+        1: '?',
+        2: '?'
+      }
+    },
+    {
       id: 1,
       name: {
         1: 'I',

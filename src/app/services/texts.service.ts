@@ -29,6 +29,18 @@ export class TextsService {
     selectLevel: {
       en: 'Please select a level',
       fr: 'Sélectionnez un niveau'
+    },
+    responseSelection: {
+      en: 'Response selection',
+      fr: 'Sélection d\'une réponse'
+    },
+    selectResponse: {
+      en: 'Please select a response',
+      fr: 'sélectionnez une réponse'
+    },
+    ok: {
+      en: 'OK',
+      fr: 'OK'
     }
   }
 

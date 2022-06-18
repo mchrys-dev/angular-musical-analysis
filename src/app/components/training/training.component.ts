@@ -26,8 +26,11 @@ export class TrainingComponent implements OnInit {
   public phrases: any[] = [];
   public keys: any[] = [];
 
+  public randomScaleTypeId: number = 0;
   public phrasesRomanNumerals: any = [];
   public phrasesAbsoluteChords: any = [];
+  public responses: any[] = [];
+  public selResponseIndex: number = 0;
 
   constructor(
     public utilitiesService: UtilitiesService,
@@ -58,19 +61,36 @@ export class TrainingComponent implements OnInit {
   }
 
   public generateProg(): void {
-    const randomScaleTypeId = this.selLevel.scaleTypeIds[Math.floor(Math.random()*this.selLevel.scaleTypeIds.length)];
+    this.randomScaleTypeId = this.selLevel.scaleTypeIds[Math.floor(Math.random()*this.selLevel.scaleTypeIds.length)];
     const randomPhrase = this.phrases[Math.floor(Math.random()*this.phrases.length)];
+
+    for(let i=0; i<5; i++) {
+      const response = this.chords.find((chord: any) => chord.id === 0);
+      this.responses.push(response);
+    }
 
     this.phrasesRomanNumerals = [];
     this.phrasesAbsoluteChords = [];
 
     randomPhrase.chordIds.forEach((id: number) => {
       const chord = this.chords.find((chord: any) => chord.id === id);
-      this.phrasesRomanNumerals.push(chord.name[randomScaleTypeId]);
-      this.phrasesAbsoluteChords.push(this.keys[0][chord.name[randomScaleTypeId]]);
+      this.phrasesRomanNumerals.push(chord.name[this.randomScaleTypeId]);
+      this.phrasesAbsoluteChords.push(this.keys[0][chord.name[this.randomScaleTypeId]]);
     });
     console.log(this.phrasesRomanNumerals);
     console.log(this.phrasesAbsoluteChords);
+  }
+
+  public getSelLevelChords(): any[] {
+    let selLevelChords: any = [];
+    this.selLevel.responseChordIds.forEach((id: number) => {
+      selLevelChords.push(this.chords.find((chord: any) => chord.id === id));
+    });
+    return selLevelChords;
+  }
+
+  public setSelResponseIndex(index: number): void {
+    this.selResponseIndex = index;
   }
 
 }

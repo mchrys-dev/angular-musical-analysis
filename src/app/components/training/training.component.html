@@ -1,10 +1,61 @@
 <h1>{{ texts.training[lang] }}</h1>
 
-<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-around">
     <div 
         *ngFor="let chord of phrasesAbsoluteChords"
-        class="col-2"
+        class="col-2 text-center"
     >
         {{ chord }}
     </div>
 </div>
+
+<form class="row d-flex justify-content-around">
+    <button 
+        *ngFor="let item of [].constructor(5); let i = index" 
+        class="form-group col-2" 
+        type="button" 
+        class="btn btn-primary col-2" 
+        data-bs-toggle="modal" 
+        data-bs-target="#exampleModal"
+        (click)="setSelResponseIndex(i)"
+    >
+        {{ responses[i].name[randomScaleTypeId] }}
+    </button>
+    <!-- <select
+        class="form-select" 
+        [(ngModel)]="responses[i]"
+        name="responseSelect_"index
+        (change)="test()"
+    >
+        <option *ngFor="let chord of getSelLevelChords()" [ngValue]="chord">{{ chord.name[randomScaleTypeId] }}</option>
+    </select> -->
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ texts.responseSelection[lang] }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <select
+              class="form-select" 
+              [(ngModel)]="responses[selResponseIndex]"
+              id="response-select"
+              name="responseSelect"
+          >
+            <option *ngFor="let chord of getSelLevelChords()" [ngValue]="chord">{{ chord.name[randomScaleTypeId] }}</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">{{ texts.ok[lang] }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{{ responses | json }}
+
+<div>{{ phrasesRomanNumerals }}</div>

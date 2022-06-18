@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UtilitiesService {
 
-  private isProVersion: boolean = true;
+  private isProVersion: boolean = false;
 
   constructor() { }
 
