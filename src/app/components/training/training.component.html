@@ -1,35 +1,48 @@
 <h1>{{ texts.training[lang] }}</h1>
 
-<div class="row d-flex justify-content-around">
+<section class="row d-flex justify-content-center">
+  <p class="text-center">Score: 0 / 0</p>
+</section>
+
+<section class="row d-flex justify-content-around">
     <div 
         *ngFor="let chord of phrasesAbsoluteChords"
         class="col-2 text-center"
     >
         {{ chord }}
     </div>
-</div>
+</section>
 
 <form class="row d-flex justify-content-around">
+    <p class="col-2 text-center my-auto">{{ phrasesRomanNumerals[0] }}</p>
     <button 
-        *ngFor="let item of [].constructor(5); let i = index" 
+        *ngFor="let item of [].constructor(4); let i = index" 
         class="form-group col-2" 
         type="button" 
         class="btn btn-primary col-2" 
         data-bs-toggle="modal" 
         data-bs-target="#exampleModal"
+        [disabled]="responsesBtnDisabled"
         (click)="setSelResponseIndex(i)"
     >
         {{ responses[i].name[randomScaleTypeId] }}
     </button>
-    <!-- <select
-        class="form-select" 
-        [(ngModel)]="responses[i]"
-        name="responseSelect_"index
-        (change)="test()"
-    >
-        <option *ngFor="let chord of getSelLevelChords()" [ngValue]="chord">{{ chord.name[randomScaleTypeId] }}</option>
-    </select> -->
 </form>
+
+<section class="row d-flex justify-content-around">
+  <p class="col-2 text-center"></p>
+  <p 
+    class="col-2 text-center text-{{ feedbacks[i].color }}"   
+    *ngFor="let item of [].constructor(4); let i = index"
+  >
+    <i class="fa-solid fa-{{ feedbacks[i].text }}"></i>
+  </p>
+</section>
+
+<section class="row d-flex justify-content-around">
+  <button class="btn btn-primary col-4" [disabled]="actionBtnDisabled[0]" (click)="generateProg()">{{ texts.newProg[lang] }}</button>
+  <button class="btn btn-primary col-4" [disabled]="actionBtnDisabled[1]" (click)="checkAnswers()">{{ texts.checkAnswers[lang] }}</button>
+</section>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -56,6 +69,6 @@
     </div>
   </div>
 
-{{ responses | json }}
+{{ feedbacks | json }}
 
-<div>{{ phrasesRomanNumerals }}</div>
+ 

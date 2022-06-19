@@ -41,6 +41,14 @@ export class TextsService {
     ok: {
       en: 'OK',
       fr: 'OK'
+    },
+    newProg: {
+      en: 'New chord progression',
+      fr: 'Nouvelle progression d\'accords'
+    },
+    checkAnswers: {
+      en: 'Check answers',
+      fr: 'Corriger'
     }
   }
 

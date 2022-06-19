@@ -32,6 +32,10 @@ export class TrainingComponent implements OnInit {
   public responses: any[] = [];
   public selResponseIndex: number = 0;
 
+  public responsesBtnDisabled: boolean = false;
+  public actionBtnDisabled: boolean[] = [true, false];
+  public feedbacks: any[] = [];
+
   constructor(
     public utilitiesService: UtilitiesService,
     public textsService: TextsService,
@@ -61,10 +65,20 @@ export class TrainingComponent implements OnInit {
   }
 
   public generateProg(): void {
+    this.responsesBtnDisabled = false;
+    this.feedbacks = [];
+    for(let i=0; i<4; i++) {
+      this.feedbacks.push({
+        text: '',
+        color: 'black'
+      });
+    }
+
     this.randomScaleTypeId = this.selLevel.scaleTypeIds[Math.floor(Math.random()*this.selLevel.scaleTypeIds.length)];
     const randomPhrase = this.phrases[Math.floor(Math.random()*this.phrases.length)];
 
-    for(let i=0; i<5; i++) {
+    this.responses = [];
+    for(let i=0; i<4; i++) {
       const response = this.chords.find((chord: any) => chord.id === 0);
       this.responses.push(response);
     }
@@ -91,6 +105,26 @@ export class TrainingComponent implements OnInit {
 
   public setSelResponseIndex(index: number): void {
     this.selResponseIndex = index;
+  }
+
+  public checkAnswers(): void {
+    this.responsesBtnDisabled = true;
+    this.actionBtnDisabled = [false, true];
+
+    this.feedbacks = [];
+    this.responses.forEach((response, index) => {
+      if(this.responses[index].name[this.randomScaleTypeId] === this.phrasesRomanNumerals[index+1]) {
+        this.feedbacks.push({
+          text: 'check',
+          color: 'success'
+        });
+      } else {
+        this.feedbacks.push({
+          text: 'xmark',
+          color: 'danger'
+        });
+      }
+    });
   }
 
 }
